@@ -26,7 +26,10 @@ node {
             sudo npm install
             sudo npm run build
             sudo fuser -k 3000/tcp || true
-            npm run start
+            pm2 delete nextjs-app || true
+            pm2 start npm --name "nextjs-app" -- start
+            pm2 save
+            // npm run start
         """
     }
 }
